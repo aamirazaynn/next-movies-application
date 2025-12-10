@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/server/Header";
 import FavoriteButton from "@/components/client/FavoriteButton";
 import ErrorMessage from "@/components/server/ErrorMessage";
+import ScrollToTop from "@/components/client/ScrollToTop";
 import { getMovieDetails, isApiKeyConfigured } from "@/lib/api";
 import {
   getPosterUrl,
@@ -26,6 +27,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
   if (!isApiKeyConfigured()) {
     return (
       <>
+        <ScrollToTop />
         <Header />
         <main className={styles.main}>
           <ErrorMessage message="API key not configured. Please set NEXT_PUBLIC_OMDB_API_KEY in your environment variables." />
@@ -52,6 +54,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
   if (error) {
     return (
       <>
+        <ScrollToTop />
         <Header />
         <main className={styles.main}>
           <ErrorMessage message={error} />
@@ -68,6 +71,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
 
   return (
     <>
+      <ScrollToTop />
       <Header />
       <main className={styles.main}>
         <article className={styles.movieDetails}>
